@@ -1,0 +1,5 @@
+.dashboard-card {
+    margin-bottom: 3em;
+    box-shadow: 0 3px 7px 5px rgba(0, 0, 0, .2), 0 5px 9px 0 rgba(0, 0, 0, .14), 0 6px 11px 0 rgba(0, 0, 0, .12) !important;
+    border-radius: 3px;
+  }

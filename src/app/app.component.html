@@ -1,0 +1,23 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="bg-primary">
+    <mat-nav-list class="text-white ">
+      <a class="text-white" *ngFor="let route of routes"
+         mat-list-item  
+         [routerLink]="route.path" 
+         (click)="sidenav.toggle()"> {{route.label}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 90vh;">
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <i class="fa fa-bars text-white" (click)="sidenav.open()"></i>
+              </li>
+            </ul>
+            <div class="col-12 text-center  text-white h3"><p><b>Dream11 IPL 2020 data Visualization</b></p></div>
+          </nav>
+    <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

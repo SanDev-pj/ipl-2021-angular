@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 text-center  mt-4">
+      <div class="col-12 text-primary mb-2"><span><b>Team Details</b></span></div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-12  text-center">
+        <ng-container matColumnDef="si">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> SI# </th>
+          <td mat-cell *matCellDef="let element;let i =index"> {{i+1}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="label">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Label </th>
+          <td mat-cell *matCellDef="let element"> {{element.Label}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="team">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Team </th>
+          <td mat-cell *matCellDef="let element"> {{element.Team}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="home_ground">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Home Ground </th>
+          <td mat-cell *matCellDef="let element"> {{element.home_ground}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="coach">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Coach </th>
+          <td mat-cell *matCellDef="let element"> {{element.Coach}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="city">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> City </th>
+          <td mat-cell *matCellDef="let element"> {{element.City}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="captain">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> Captain </th>
+          <td mat-cell *matCellDef="let element"> {{element.Captain}} </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <!-- <mat-paginator class= "col-md-12" #paginatorRef [length]="dataSource.length" [pageSize]="rowsOnPage"
+            (page)="getPaginatorData($event)" [pageSizeOptions]="[5,10, 20, 30]" showFirstLastButtons="false">
+ </mat-paginator> -->
+    </div>
+  <div class="col-6 text-center mt-5" (window:resize)="onResize($event)">
+    <div class="col-12 text-center text-primary"><span><b>Amount Spent by Each Team</b></span></div>
+      <div #chartDiv  id="chart_div"></div>
+  </div>
+  </div>
+  
+</div>

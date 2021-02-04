@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+        <div class="col-12 text-center text-primary mt-4"><p><b>Players Details Sorted By Price</b></p></div>
+        <div class="col-12 text-center  mt-4" >
+            <table mat-table [dataSource]="dataSource | slice: lowValue : highValue" class="mat-elevation-z8 col-12  text-center">
+                <ng-container matColumnDef="si">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> SI# </th>
+                    <td mat-cell *matCellDef="let element;let i =index"> {{i+1}} </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="label">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Team </th>
+                    <td mat-cell *matCellDef="let element"> {{element.label}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="role">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Role </th>
+                    <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Price (<i class="fa fa-inr"></i>) </th>
+                    <td mat-cell *matCellDef="let element"> {{element.price |number}} </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+            <mat-paginator class= "col-md-12" #paginatorRef [length]="dataSource.length" [pageSize]="rowsOnPage"
+            (page)="getPaginatorData($event)" [pageSizeOptions]="[5,10, 20, 30]" showFirstLastButtons="false">
+ </mat-paginator>
+        </div>
+    </div>
+    <div class="col-6">
+        <mat-card class="dashboard-card  mat-card-widget mt-5">
+            <div class="row">
+                <div class="col-12 text-center my-2 text-primary border-bottom border-success"><span><b>Role Wise Number Of Players</b></span></div>
+                <div class="col-12 text-center" *ngFor="let item of count_players_role_wise">
+                    <span>{{item['role']}}&nbsp;:&nbsp;{{item['count']}}</span>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="dashboard-card  mat-card-widget mt-5">
+            <div class="row">
+                <div class="col-12 text-center my-2 text-primary border-bottom border-success"><span><b>Amount Spent By each Team</b></span></div>
+                <div class="col-12 text-center" *ngFor="let item of amount_spent_by_each_team">
+                    <span>{{item['_id']}}&nbsp;:<i class="fa fa-inr"></i>&nbsp;{{item['total_amount']|number}} </span>
+                </div>
+            </div>
+        </mat-card>
+
+        <mat-card class="dashboard-card  mat-card-widget mt-5">
+            <div class="row">
+                <div class="col-6 text-center my-2 text-primary border-bottom border-success"><span><b>Amount Spent By each Role of Selected Team</b></span></div>
+                <div class="col-6 text-center my-2 border-bottom border-success">
+                      <mat-form-field class="col-12">
+                        <mat-label class="text-primary">Select Team</mat-label>
+                        <mat-select (selectionChange)="get_amount_spent_role_wise_after_selecting_team()" [(ngModel)]='team_label'>
+                          <mat-option *ngFor="let item of team_labels" [value]="item">{{item}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div class="col-12 text-center" *ngFor="let item of amount_spent_by_role_of_given_team">
+                    <span>{{item['role']}}&nbsp;:<i class="fa fa-inr"></i>&nbsp;{{item['total_amount']|number}}</span>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+  </div>
+</div>
